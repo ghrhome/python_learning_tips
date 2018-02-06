@@ -243,7 +243,7 @@ OK
 
 说明
 
-var:1是键值，每个 hash 可以存储 232 - 1 键值对（40多亿）
+var:1是键值，每个 hash 可以存储 232 - 1 键值对（40多亿）
 
 HMSET用于建立hash对象，HGETALL用于获取hash对象
 
@@ -286,14 +286,13 @@ OK
 3) "1"
 127.0.0.1:6379> lrange lvar 2 2
 1) "1"
-
 ```
 
 说明
 
 lpush往列表的前边插入；lrange后面的数字是范围（闭区间）
 
-列表最多可存储 232 - 1 元素 \(4294967295, 每个列表可存储40多亿\)。
+列表最多可存储 232 - 1 元素 \(4294967295, 每个列表可存储40多亿\)。
 
 **4.4 Set\(集合\)**
 
@@ -323,8 +322,6 @@ Redis的Set是string类型的无序集合。
 set往集合中插入元素，smembers列举出集合中的元素
 
 成功插入返回1；错误插入返回0，例子中mongodb第二次插入时，因已经存在，故插入失败。
-
-
 
 **4.5 zset\(sorted sete：有序集合\)**
 
@@ -376,8 +373,6 @@ zset的元素是唯一的，但是分数是可以重复的
 
 [回到顶部](https://www.cnblogs.com/kaituorensheng/p/5244347.html#_labelTop)
 
-
-
 ### 5. Redis HyperLogLog
 
 Redis HyperLogLog是用来做基数统计的算法。优点是，在输入元素的数量或者体积非常非常大时，计算基数所需的空间总是固定的、并且是很小的。
@@ -424,11 +419,9 @@ localhost:6379> pfcount jsh2
 
 [回到顶部](https://www.cnblogs.com/kaituorensheng/p/5244347.html#_labelTop)
 
-
-
 ### 6. Redis 发布订阅
 
-Redis 发布订阅\(pub/sub\)是一种消息通信模式：发送者\(pub\)发送消息，订阅者\(sub\)接收消息。 
+Redis 发布订阅\(pub/sub\)是一种消息通信模式：发送者\(pub\)发送消息，订阅者\(sub\)接收消息。
 
 Redis 客户端可以订阅任意数量的频道。
 
@@ -515,7 +508,7 @@ localhost:6379> exec
 
 ### 8. Redis脚本
 
-Redis 脚本使用 Lua 解释器来执行脚本。执行脚本的常用命令为 **EVAL**。基本语法
+Redis 脚本使用 Lua 解释器来执行脚本。执行脚本的常用命令为 **EVAL**。基本语法
 
 ```
 EVAL script numkeys key [key ...] arg [arg ...]
@@ -559,6 +552,76 @@ localhost:6379> config get dir
 Redis中，一共有16个数据库，分别是0~15，一般情况下，进入数据库默认编号是0，如果我们要进入指定数据库，可以用select语句
 
 切换到编号为3的数据库
+
+```
+localhost:6379> select 3
+OK
+localhost:6379[3]>
+```
+
+查看数据库中所有的键值
+
+```
+localhost:6379[1]> set a 1
+OK
+localhost:6379[1]> set  b 2
+OK
+localhost:6379[1]> keys *
+1) "b"
+2) "a"
+```
+
+返回当前数据库中所有key的数目:　　dbsize 
+
+删除当前数据库中的所有key: 　　flushdb    
+
+清空所有数据库中的所有key: 　　flushall
+
+把当前数据库中的key转移到指定数据库：move a aim\_db，例：
+
+```
+localhost:6379[1]> set z sss
+OK
+localhost:6379[1]> move z 0
+(integer) 1
+localhost:6379[1]> select 0
+OK
+localhost:6379> get z
+"sss"
+```
+
+### 11. 实际小应用
+
+http://www.aboutyun.com/thread-12613-1-1.html 
+
+[回到顶部](https://www.cnblogs.com/kaituorensheng/p/5244347.html#_labelTop)
+
+
+
+### 12. 关闭持久化
+
+数据持久化是Redis不同于其他缓存的一个特性，具有明显的有点。但如不希望持久化数据，只作为普通的缓存用，如memcache
+
+方法：
+
+修改配置文件，改完后重启。
+
+```
+#save 900 1  
+#save 300 10  
+#save 60 10000  
+```
+
+或执行操作命令
+
+```
+CONFIG SET save ""
+```
+
+执行命令后，无需重启即可生效
+
+  
+
 
 
 
