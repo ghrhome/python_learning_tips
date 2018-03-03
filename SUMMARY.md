@@ -7,4 +7,5 @@
 * [MongoDB3.4版本配置详解](mongodb34ban-ben-pei-zhi-xiang-jie.md)
 * [Redis学习笔记——初级](redisxue-xi-bi-ji-2014-2014-chu-ji.md)
 * [使用Python操作Redis](shi-yong-python-cao-zuo-redis.md)
+* [如何执行To B 产品的迭代工作？这有一份实战总结](ru-he-zhi-xing-to-b-chan-pin-de-die-dai-gong-zuo-ff1f-zhe-you-yi-fen-shi-zhan-zong-jie.md)
 
