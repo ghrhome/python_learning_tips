@@ -9,4 +9,5 @@
 * [使用Python操作Redis](shi-yong-python-cao-zuo-redis.md)
 * [如何执行To B 产品的迭代工作？这有一份实战总结](ru-he-zhi-xing-to-b-chan-pin-de-die-dai-gong-zuo-ff1f-zhe-you-yi-fen-shi-zhan-zong-jie.md)
 * [互联网杀不死彭博： 因为它最了解华尔街](hu-lian-wang-sha-bu-si-peng-bo-ff1a-yin-wei-ta-zui-le-jie-hua-er-jie.md)
+* [Scrapy简单入门及实例讲解](scrapyjian-dan-ru-men-ji-shi-li-jiang-jie.md)
 
