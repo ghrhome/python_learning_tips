@@ -140,18 +140,18 @@ $ scrapy crawl dmoz
 ```
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
- 
+
 from spiders.DmozSpider import DmozSpider
- 
+
 # 获取settings.py模块的设置
 settings = get_project_settings()
 process = CrawlerProcess(settings=settings)
- 
+
 # 可以添加多个spider
 # process.crawl(Spider1)
 # process.crawl(Spider2)
 process.crawl(DmozSpider)
- 
+
 # 启动爬虫，会阻塞，直到爬取完成
 process.start()
 ```
@@ -160,11 +160,37 @@ process.start()
 >
 > [http://doc.scrapy.org/en/latest/topics/practices.html\#run-scrapy-from-a-script](http://doc.scrapy.org/en/latest/topics/practices.html#run-scrapy-from-a-script)
 
+## 三、Scrapy类
 
+如上面的`DmozSpider`类，爬虫类继承自`scrapy.Spider`，用于构造`Request`对象给Scheduler
 
+### 1. 常用属性与方法
 
+_属性_
 
+* `name`：爬虫的名字，必须唯一（如果在控制台使用的话，必须配置）
+* `start_urls`：爬虫初始爬取的链接列表
+* `parse`：response结果处理函数
+* `custom_settings`：自定义配置，覆盖`settings.py`中的默认配置
 
+_方法_
 
+* `start_requests`：启动爬虫的时候调用，默认是调用`make_requests_from_url`方法爬取`start_urls`的链接，可以在这个方法里面定制，如果重写了该方法，start\_urls默认将不会被使用，可以在这个方法里面定制一些自定义的url，如登录，从数据库读取url等，本方法返回Request对象
+* `make_requests_from_url`：默认由`start_requests`调用，可以配置Request对象，返回Request对象
+* `parse`：response到达spider的时候默认调用，如果在Request对象配置了callback函数，则不会调用，parse方法可以迭代返回`Item`或`Request`对象，如果返回Request对象，则会进行增量爬取
 
+### 2. Request与Response对象
+
+每个请求都是一个Request对象，Request对象定义了请求的相关信息（`url`,`method`,`headers`,`body`,`cookie`,`priority`）和回调的相关信息（`meta`,`callback`,`dont_filter`,`errback`），通常由spider迭代返回
+
+其中`meta`相当于附加变量，可以在请求完成后通过`response.meta`访问
+
+请求完成后，会通过`Response`对象发送给spider处理，常用属性有（`url`,`status`,`headers`,`body`,`request`,`meta`, ）
+
+详细介绍参考官网
+
+* [https://doc.scrapy.org/en/latest/topics/request-response.html\#request-objects](https://doc.scrapy.org/en/latest/topics/request-response.html#request-objects)
+* [https://doc.scrapy.org/en/latest/topics/request-response.html\#response-objects](https://doc.scrapy.org/en/latest/topics/request-response.html#response-objects)
+
+看下面这个例子
 
