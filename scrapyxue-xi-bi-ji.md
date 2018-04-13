@@ -76,5 +76,26 @@ scrapy由下面几个部分组成
 
 我们先来看一个例子，在`spiders`目录下新建一个模块`DmozSpider.py`
 
+```
+import scrapy
+ 
+class DmozSpider(scrapy.Spider):
+    # 必须定义
+    name = "dmoz"
+    # 初始urls
+    start_urls = [
+        "http://www.dmoz.org/Computers/Programming/Languages/Python/Books/",
+        "http://www.dmoz.org/Computers/Programming/Languages/Python/Resources/"
+    ]
+ 
+    # 默认response处理函数
+    def parse(self, response):
+        # 把结果写到文件中
+        filename = response.url.split("/")[-2]
+        with open(filename, 'wb') as f:
+            f.write(response.body)
+
+```
+
 
 
