@@ -78,7 +78,7 @@ scrapy由下面几个部分组成
 
 ```
 import scrapy
- 
+
 class DmozSpider(scrapy.Spider):
     # 必须定义
     name = "dmoz"
@@ -87,15 +87,84 @@ class DmozSpider(scrapy.Spider):
         "http://www.dmoz.org/Computers/Programming/Languages/Python/Books/",
         "http://www.dmoz.org/Computers/Programming/Languages/Python/Resources/"
     ]
- 
+
     # 默认response处理函数
     def parse(self, response):
         # 把结果写到文件中
         filename = response.url.split("/")[-2]
         with open(filename, 'wb') as f:
             f.write(response.body)
+```
+
+打开终端进入根目录，执行下面命令
 
 ```
+$ scrapy crawl dmoz
+```
+
+爬虫开始爬取start\_urls定义的url，并输出到文件中，最后输出爬去报告，会输出爬取得统计结果
+
+```
+2016-09-13 10:36:43 [scrapy] INFO: Spider opened
+2016-09-13 10:36:43 [scrapy] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2016-09-13 10:36:43 [scrapy] DEBUG: Telnet console listening on 127.0.0.1:6023
+2016-09-13 10:36:44 [scrapy] DEBUG: Crawled (200) <GET http://www.dmoz.org/Computers/Programming/Languages/Python/Resources/> (referer: None)
+2016-09-13 10:36:45 [scrapy] DEBUG: Crawled (200) <GET http://www.dmoz.org/Computers/Programming/Languages/Python/Books/> (referer: None)
+2016-09-13 10:36:45 [scrapy] INFO: Closing spider (finished)
+2016-09-13 10:36:45 [scrapy] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 548,
+ 'downloader/request_count': 2,
+ 'downloader/request_method_count/GET': 2,
+ 'downloader/response_bytes': 16179,
+ 'downloader/response_count': 2,
+ 'downloader/response_status_count/200': 2,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2016, 9, 13, 2, 36, 45, 585113),
+ 'log_count/DEBUG': 3,
+ 'log_count/INFO': 7,
+ 'response_received_count': 2,
+ 'scheduler/dequeued': 2,
+ 'scheduler/dequeued/memory': 2,
+ 'scheduler/enqueued': 2,
+ 'scheduler/enqueued/memory': 2,
+ 'start_time': datetime.datetime(2016, 9, 13, 2, 36, 43, 935790)}
+2016-09-13 10:36:45 [scrapy] INFO: Spider closed (finished)
+```
+
+这里我们完成了简单的爬取和保存的操作，会在根目录生成两个文件`Resources`和`Books`
+
+### 2. 通过代码运行爬虫
+
+每次进入控制台运行爬虫还是比较麻烦的，而且不好调试，我们可以通过`CrawlerProcess`通过代码运行爬虫，新建一个模块`run.py`
+
+```
+from scrapy.crawler import CrawlerProcess
+from scrapy.utils.project import get_project_settings
+ 
+from spiders.DmozSpider import DmozSpider
+ 
+# 获取settings.py模块的设置
+settings = get_project_settings()
+process = CrawlerProcess(settings=settings)
+ 
+# 可以添加多个spider
+# process.crawl(Spider1)
+# process.crawl(Spider2)
+process.crawl(DmozSpider)
+ 
+# 启动爬虫，会阻塞，直到爬取完成
+process.start()
+```
+
+> 参考：
+>
+> [http://doc.scrapy.org/en/latest/topics/practices.html\#run-scrapy-from-a-script](http://doc.scrapy.org/en/latest/topics/practices.html#run-scrapy-from-a-script)
+
+
+
+
+
+
 
 
 
