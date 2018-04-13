@@ -13,16 +13,16 @@ scrapy是python最有名的爬虫框架之一，可以很方便的进行web抓�
 $ sudo apt-get install libxml2 libxml2-dev
 $ sudo apt-get install libxslt1-dev
 $ sudo apt-get install python-libxml2
- 
+
 # 2. 安装lxml
 $ sudo pip install lxml
- 
+
 # 3. 安装Twisted（版本可以换成最新的），用pip也可以，如果失败的话下载源码安装，如下
 $ wget https://pypi.python.org/packages/6b/23/8dbe86fc83215015e221fbd861a545c6ec5c9e9cd7514af114d1f64084ab/Twisted-16.4.1.tar.bz2#md5=c6d09bdd681f538369659111f079c29d
 $ tar xjf Twisted-16.4.1.tar.bz2
 $ cd Twisted-16.4.1
 $ sudo python setup.py install
- 
+
 # 3. 安装scrapy
 $ sudo pip install scrapy
 ```
@@ -34,7 +34,7 @@ $ sudo pip install scrapy
 ```
 # 安装xml依赖库
 $ xcode-select —install
- 
+
 # 其实相关依赖pip会自动帮我们装上
 $ pip install scrapy
 ```
@@ -53,23 +53,32 @@ $ scrapy startproject tutorial
 
 > [这里](https://scrapy-chs.readthedocs.io/zh_CN/0.24/topics/commands.html)可以查看scrapy更多其他的命令
 
+初始化完成后，我们得到下面目录结构
 
+```
+scrapy.cfg:         项目的配置文件
+tutorial/:          该项目的python模块, 在这里添加代码
+    items.py:       项目中的item文件
+    pipelines.py:   项目中的pipelines文件.
+    settings.py:    项目全局设置文件.
+    spiders/        爬虫模块目录
 
+```
 
+我们先看一下scrapy的处理流程  
+![](http://jbcdn2.b0.upaiyun.com/2016/10/c24dade2ab6bc0143a2abc9d271136d0.png)
 
+scrapy由下面几个部分组成
 
+* `spiders`
+  ：爬虫模块，负责配置需要爬取的数据和爬取规则，以及解析结构化数据
+* `items`
+  ：定义我们需要的结构化数据，使用相当于
+  `dict`
+* `pipelines`
+  ：管道模块，处理spider模块分析好的结构化数据，如保存入库等
+* `middlewares`
+  ：中间件，相当于钩子，可以对爬取前后做预处理，如修改请求header，url过滤等
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+我们先来看一个例子，在`spiders`目录下新建一个模块`DmozSpider.py`
 
