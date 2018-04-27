@@ -11,4 +11,5 @@
 * [互联网杀不死彭博： 因为它最了解华尔街](hu-lian-wang-sha-bu-si-peng-bo-ff1a-yin-wei-ta-zui-le-jie-hua-er-jie.md)
 * [Scrapy简单入门及实例讲解](scrapyjian-dan-ru-men-ji-shi-li-jiang-jie.md)
 * [scrapy学习笔记](scrapyxue-xi-bi-ji.md)
+* [git排除常用配置，svn与git共存时.gitignore配置](gitpai-chu-chang-yong-peizhi-ff0c-svn-yu-git-gong-cun-65f6-gitignore-pei-zhi.md)
 
