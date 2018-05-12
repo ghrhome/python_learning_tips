@@ -13,4 +13,5 @@
 * [scrapy学习笔记](scrapyxue-xi-bi-ji.md)
 * [git排除常用配置，svn与git共存时.gitignore配置](gitpai-chu-chang-yong-peizhi-ff0c-svn-yu-git-gong-cun-65f6-gitignore-pei-zhi.md)
 * [Python中的单行、多行、中文注释](pythonzhong-de-dan-xing-3001-duo-xing-3001-zhong-wen-zhu-shi.md)
+* [python的pip和virtualenv使用心得](pythonde-pip-he-virtualenv-shi-yong-xin-de.md)
 
