@@ -1,13 +1,13 @@
 # python独立环境virtualenv\(并在pycharm中指定\)
 
 > 本机环境：
-
+>
 > mac Sierra10.12.1 \(16B2657\)
-
+>
 > Python 2.7.10 \(default, Jul 30 2016, 18:31:42\)
-
+>
 > pip 9.0.1
-
+>
 > IDE:pycharm
 
 ### 两版本mac自带 直接加版本号
@@ -61,7 +61,6 @@ pip install -r requirements.txt #安装项目需要的包
 
 deactivate
 #退出虚拟环境，回到正常shell
-
 ```
 
 ### python3虚拟环境
@@ -77,6 +76,8 @@ virtualenv -p /usr/local/bin/python3 py3venv
 在PyCharm搜索：project interpreter  
 即可设置
 
+
+
 ### docker下安装mongoDB
 
 ```
@@ -84,7 +85,6 @@ docker pull mongo # 拉取docker mongoDB镜像（官方）
 docker run -d -p 27017:27017 mongo:latest  #跑容器 mongoDB默认端口为27017
 # docker ps显示正运行容器
 # docker ps -a所有容器
-
 ```
 
 ### mac下 临时使用国内源 进行安装
@@ -103,14 +103,6 @@ pip install requests -i https://pypi.douban.com/simple
  trusted-host =  mirrors.aliyun.com
  index-url = http://mirrors.aliyun.com/pypi/simple
 ```
-
-
-
-
-
-
-
-
 
 
 
