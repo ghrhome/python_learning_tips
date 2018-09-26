@@ -76,8 +76,6 @@ virtualenv -p /usr/local/bin/python3 py3venv
 在PyCharm搜索：project interpreter  
 即可设置
 
-
-
 ### docker下安装mongoDB
 
 ```
