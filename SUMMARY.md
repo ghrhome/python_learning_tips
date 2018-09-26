@@ -16,4 +16,5 @@
 * [python的pip和virtualenv使用心得](pythonde-pip-he-virtualenv-shi-yong-xin-de.md)
 * [python独立环境virtualenv\(并在pycharm中指定\)](pythondu-li-huan-jing-virtualenv-bing-zai-pycharm-zhong-zhi-5b9a29.md)
 * [Ubuntu安装Nodejs](ubuntuan-zhuang-nodejs.md)
+* [Ubuntu16.04安装最新版nodejs](ubuntu1604an-zhuang-zui-xin-ban-nodejs.md)
 
