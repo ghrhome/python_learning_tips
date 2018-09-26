@@ -18,4 +18,5 @@
 * [Ubuntu安装Nodejs](ubuntuan-zhuang-nodejs.md)
 * [Ubuntu16.04安装最新版nodejs](ubuntu1604an-zhuang-zui-xin-ban-nodejs.md)
 * [Ubuntu怎样安装Python3.6](ubuntuzen-yang-an-zhuang-python3-6.md)
+* [Ubuntu 16.04安装Nginx](ubuntu-1604an-zhuang-nginx.md)
 
